@@ -28,6 +28,7 @@ public class Aluno {
   private String cpf;
 
   private String bairro;
+
   private LocalDate dataDeNascimento;
 
   //OneToMany pois cada aluno pode ter várias avaliações fisicas
@@ -35,4 +36,10 @@ public class Aluno {
   @JsonIgnore
   private List<AvaliacaoFisica> avaliacoes = new ArrayList<>();
 
+  public Aluno(String nome, String cpf, String bairro, LocalDate dataDeNascimento) {
+    this.nome = nome;
+    this.cpf = cpf;
+    this.bairro = bairro;
+    this.dataDeNascimento = dataDeNascimento;
+  }
 }

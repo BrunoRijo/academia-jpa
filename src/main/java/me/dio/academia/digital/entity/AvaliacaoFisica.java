@@ -30,4 +30,9 @@ public class AvaliacaoFisica {
   @Column(name = "altura_atual")
   private double altura;
 
+  public AvaliacaoFisica(Aluno aluno, double peso, double altura) {
+    this.aluno = aluno;
+    this.peso = peso;
+    this.altura = altura;
+  }
 }
