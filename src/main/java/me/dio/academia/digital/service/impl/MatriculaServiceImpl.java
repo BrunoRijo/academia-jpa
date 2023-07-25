@@ -1,6 +1,5 @@
 package me.dio.academia.digital.service.impl;
 
-import me.dio.academia.digital.entity.Aluno;
 import me.dio.academia.digital.entity.Matricula;
 import me.dio.academia.digital.entity.form.MatriculaForm;
 import me.dio.academia.digital.repository.AlunoRepository;
@@ -34,8 +33,12 @@ public class MatriculaServiceImpl implements IMatriculaService {
     }
 
     @Override
-    public List<Matricula> getAll() {
-        return repository.findAll();
+    public List<Matricula> getAll(String bairro) {
+        if (bairro == null) {
+            return repository.findAll();
+        } else {
+            return repository.findByAlunoBairro(bairro);
+        }
     }
 
     @Override
