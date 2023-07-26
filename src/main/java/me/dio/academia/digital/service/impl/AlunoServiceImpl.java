@@ -21,13 +21,12 @@ public class AlunoServiceImpl implements IAlunoService {
 
     @Override
     public Aluno create(AlunoForm form) {
-        return alunoRepository.save(
-                new Aluno(
-                        form.getNome(),
-                        form.getCpf(),
-                        form.getBairro(),
-                        form.getDataDeNascimento())
-        );
+        Aluno aluno = new Aluno();
+        aluno.setNome(form.getNome());
+        aluno.setCpf(form.getCpf());
+        aluno.setBairro(form.getBairro());
+        aluno.setDataDeNascimento(form.getDataDeNascimento());
+        return alunoRepository.save(aluno);
     }
 
     @Override

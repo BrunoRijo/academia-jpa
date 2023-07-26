@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/alunos", produces = {"applicatiion/json"})
+@RequestMapping(value = "/alunos", produces = {"application/json"})
 @Tag(name = "Aluno")
 public class AlunoController {
 
@@ -51,9 +51,9 @@ public class AlunoController {
 
     @Operation(summary = "Busca todos os alunos")
     @GetMapping
-    public List<Aluno> getAll(
+    public ResponseEntity<List<Aluno>> getAll(
             @RequestParam(value = "dataDeNascimento", required = false) String dataDeNascimento
     ){
-        return service.getAll(dataDeNascimento);
+        return ResponseEntity.status(HttpStatus.OK).body(service.getAll(dataDeNascimento));
     }
 }
