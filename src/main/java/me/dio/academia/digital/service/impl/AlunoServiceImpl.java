@@ -34,7 +34,6 @@ public class AlunoServiceImpl implements IAlunoService {
 
     @Override
     public List<Aluno> getAll(String dataDeNascimento) {
-
         if (dataDeNascimento == null){
             return alunoRepository.findAll();
         } else {

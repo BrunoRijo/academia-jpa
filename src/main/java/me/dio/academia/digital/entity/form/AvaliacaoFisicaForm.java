@@ -7,6 +7,7 @@ import me.dio.academia.digital.entity.Aluno;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @Data
@@ -14,14 +15,15 @@ import javax.validation.constraints.Positive;
 @AllArgsConstructor
 public class AvaliacaoFisicaForm {
 
+  @NotNull
   @Positive(message = "'${validatedValue}' precisa ser positivo!")
   private Long alunoId;
 
-  @NotBlank(message = "Preencha o campo corretamente")
+  @NotNull
   @Positive(message = "'${validatedValue}' precisa ser positivo!")
   private double peso;
 
-  @NotBlank(message = "Preencha o campo corretamente")
+  @NotNull
   @Positive(message = "'${validatedValue}' precisa ser positivo!")
   @DecimalMin(value = "150", message =  "'${validatedValue}' precisa ser no minimo {value}!")
   private double altura;
