@@ -21,12 +21,12 @@ public class AlunoServiceImpl implements IAlunoService {
 
     @Override
     public Aluno create(AlunoForm form) {
-        Aluno aluno = new Aluno();
-        aluno.setNome(form.getNome());
-        aluno.setCpf(form.getCpf());
-        aluno.setBairro(form.getBairro());
-        aluno.setDataDeNascimento(form.getDataDeNascimento());
-        return alunoRepository.save(aluno);
+        return alunoRepository.save(new Aluno(
+                form.getNome(),
+                form.getCpf(),
+                form.getBairro(),
+                form.getDataDeNascimento()
+        ));
     }
 
     @Override
@@ -46,18 +46,15 @@ public class AlunoServiceImpl implements IAlunoService {
     @Override
     public Aluno update(Long id, AlunoUpdateForm formUpdate) {
         Aluno aluno = alunoRepository.findById(id).get();
-        AlunoUpdateForm alunoUpdateForm = new AlunoUpdateForm(
-                                                        aluno.getNome(),
-                                                        aluno.getBairro(),
-                                                        aluno.getDataDeNascimento()
-                                                        );
-
+        aluno.setNome(formUpdate.getNome());
+        aluno.setBairro(formUpdate.getBairro());
+        aluno.setDataDeNascimento(formUpdate.getDataDeNascimento());
         return alunoRepository.save(aluno);
     }
 
     @Override
     public void delete(Long id) {
-
+        alunoRepository.deleteById(id);
     }
 
     @Override

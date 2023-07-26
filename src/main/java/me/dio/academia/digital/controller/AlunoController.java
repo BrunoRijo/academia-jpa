@@ -26,8 +26,8 @@ public class AlunoController {
 
     @Operation(summary = "Busca o aluno pelo ID")
     @GetMapping(value = "/{id}")
-    public Aluno getById(@RequestParam Long id){
-        return service.get(id);
+    public ResponseEntity<Aluno> getById(@RequestParam Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.get(id));
     }
 
     @Operation(summary = "Adiciona um aluno")
@@ -38,15 +38,22 @@ public class AlunoController {
 
     @Operation(summary = "Edita um aluno pelo ID")
     @PutMapping(value = "/update/{id}")
-    public Aluno update(@Valid @PathVariable("id") Long id,
+    public ResponseEntity<Aluno> update(@Valid @PathVariable("id") Long id,
                         @Valid @RequestBody AlunoUpdateForm form){
-       return service.update(id, form);
+       return ResponseEntity.status(HttpStatus.OK).body(service.update(id, form));
+    }
+
+    @Operation(summary = "Deleta um aluno pelo id")
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity delete(@Valid @PathVariable("id") Long id){
+        service.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Product deleted sucessfully");
     }
 
     @Operation(summary = "Busca todas as avaliacoes já realizadas por ID do aluno")
     @GetMapping(value = "/avaliacoes/{id}")
-    public List<AvaliacaoFisica> getAllAvaliacoesId(@PathVariable Long id){
-        return service.getAllAvaliacoesId(id);
+    public ResponseEntity<List<AvaliacaoFisica>> getAllAvaliacoesId(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.getAllAvaliacoesId(id));
     }
 
     @Operation(summary = "Busca todos os alunos")
