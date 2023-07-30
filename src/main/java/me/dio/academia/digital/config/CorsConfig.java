@@ -19,6 +19,7 @@ public class CorsConfig implements WebMvcConfigurer {
         registry.addMapping("/alunos")
                 .allowedOrigins("http://localhost:333")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedHeaders("*");
+                .allowedHeaders("*")
+                .exposedHeaders("*");
     }
 }
